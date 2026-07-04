@@ -1,0 +1,61 @@
+"""
+hyper-parameters:
+"""
+import sys
+
+sys.path.append('..')
+import GCN_basic_bert_unit.Param as params
+
+CUDA_NUM = params.CUDA_NUM  # GPU num
+# LANG = params.LANG  # language 'zh'/'ja'/'fr'
+
+ENTITY_NEIGH_MAX_NUM = 50  # max sampling neighbor num of entity
+ENTITY_ATTVALUE_MAX_NUM = 50  # max sampling attributeValue num of entity
+KERNEL_NUM = params.args.KERNEL
+SEED_NUM = 2022
+CANDIDATE_NUM = 50  # candidate number
+
+BATCH_SIZE = 128  # train batch size
+NEG_NUM = 5  # negative sampling num
+LEARNING_RATE = 1e-4  # learning rate
+MARGIN = 1  # margin
+EPOCH_NUM = 1600  # train epoch num
+
+INTERACTION_MODEL_SAVE_PATH = "../Save_model/interaction_model_fbyg.bin"  # interaction model save path.
+GCNLayer = params.GCNLayer
+# load model(base_bert_unit_model) path
+BASIC_BERT_UNIT_MODEL_SAVE_PATH = "../Save_model/"
+BASIC_BERT_UNIT_MODEL_SAVE_PREFIX = "fbyg"
+LOAD_BASIC_BERT_UNIT_MODEL_EPOCH_NUM = 9
+BASIC_BERT_UNIT_MODEL_OUTPUT_DIM = 400
+MODEL_INPUT_DIM = 768
+MODEL_OUTPUT_DIM = 400  # dimension of basic bert unit output embedding
+UNITS = params.UNITS
+HIERARCHY = 1
+
+# load data path
+PATH = r'..\\data\\FBYG15K\\norm\\'
+DATA_PATH = r"..\\data\\FBYG15K\\norm\\"
+
+# candidata_save_path
+TRAIN_CANDIDATES_PATH = DATA_PATH + 'train_candidates.pkl'
+TEST_CANDIDATES_PATH = DATA_PATH + 'test_candidates.pkl'
+
+# entity embedding and attributeValue embedding save path.
+ENT_EMB_PATH = DATA_PATH + '{}_emb_{}.pkl'.format(BASIC_BERT_UNIT_MODEL_SAVE_PREFIX,
+                                                  LOAD_BASIC_BERT_UNIT_MODEL_EPOCH_NUM)
+ATTRIBUTEVALUE_EMB_PATH = DATA_PATH + 'attributeValue_embedding.pkl'
+ATTRIBUTEVALUE_LIST_PATH = DATA_PATH + 'attributeValue_list.pkl'  # 1-1 match to attributeValue embedding.
+
+# (candidate) entity_pairs save path.
+ENT_PAIRS_PATH = DATA_PATH + 'ent_pairs.pkl'  # [(e1,ea),(e1,eb)...]
+
+# interaction feature save filepath name
+NEIGHBORVIEW_SIMILARITY_FEATURE_PATH = DATA_PATH + 'neighbor_view_similarity_feature.pkl'  # 1-1 match to entity_pairs
+ATTRIBUTEVIEW_SIMILARITY_FEATURE_PATH = DATA_PATH + 'attribute_similarity_feature.pkl'  # 1-1 match to entity_pairs
+DESVIEW_SIMILARITY_FEATURE_PATH = DATA_PATH + 'des_view_similarity_feature.pkl'  # 1-1 match to entity_pairs
+HIERARCHY_FEATURE_PATH = DATA_PATH + 'hierarchy_feature.pkl'
+
+ResultFile = params.ResultFile
+Unsup_k = params.UNSUP_K
+model_file = params.model_file
